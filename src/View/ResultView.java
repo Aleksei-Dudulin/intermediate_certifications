@@ -7,14 +7,16 @@ public class ResultView {
 
     /**
      * Метод выводит результат первого задания на экран
+     *
      * @param wordCounter
      */
-    public void showTotalWord(Integer wordCounter){
+    public void showTotalWord(Integer wordCounter) {
         System.out.println("\nTask_1. Total number of words in the file \"input.txt\" is " + wordCounter);
     }
 
     /**
      * Метод выводит результат второго задания на экран
+     *
      * @param longestWords
      */
     public void showLongestWord(List<String> longestWords) {
@@ -29,21 +31,22 @@ public class ResultView {
 
     /**
      * Метод для вывода на экран элементов списка самых длинных слов
+     *
      * @param longestWords
      * @return слово или слова
      */
-    private static void printList(List<String> longestWords){
-        for (String longestWord : longestWords){
+    private static void printList(List<String> longestWords) {
+        for (String longestWord : longestWords) {
             System.out.print(longestWord + " ");
         }
     }
 
-
     /**
      * Метод выводит результат третьего задания на экран
+     *
      * @param keyValueSortList
      */
-    public void showFrequencyWord(List<Map.Entry<String, Integer>> keyValueSortList){
+    public void showFrequencyWord(List<Map.Entry<String, Integer>> keyValueSortList) {
         System.out.println("\n\nTask_3. The frequency of words in the file \"input.txt\":");
         for (Map.Entry<String, Integer> keyValue : keyValueSortList) {
             System.out.println(keyValue.getKey() + ": " + keyValue.getValue());

@@ -1,18 +1,15 @@
 package Model;
 
 import Model.Exceptions.EmptyFileException;
-import Model.Exceptions.LongestWordException;
 import Model.Exceptions.NoFileException;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.zip.DataFormatException;
 
 public class FileModel {
 
@@ -22,6 +19,7 @@ public class FileModel {
 
     /**
      * Конструктор класса FileReader
+     *
      * @param fileName ссылка на файл
      */
     public FileModel(String fileName) throws NoFileException, EmptyFileException, IOException {
@@ -32,13 +30,14 @@ public class FileModel {
 
     /**
      * Метод создания виртуальной базы из данных файла "input.txt"
+     *
      * @return объект класса Map<String, Integer>
      * @throws IOException
      */
     public Map<String, Integer> createWordBase() throws NoFileException, EmptyFileException, IOException {
 
         File checker = new File(fileName);
-        if (checker.exists()){ // Проверяем существование файла
+        if (checker.exists()) { // Проверяем существование файла
             if (checker.length() != 0) { // Проверяем наличие данных в файле
                 Map<String, Integer> newWordBase = new HashMap<>();
                 BufferedReader readerFile = new BufferedReader(new java.io.FileReader(fileName));
@@ -68,51 +67,32 @@ public class FileModel {
 
     /**
      * Метод считает общее число слов в wordBase
+     *
      * @return количество слов
      */
-    public int getTotalWord(){
+    public int getTotalWord() {
         int wordCounter = 0;
-        for (Map.Entry<String, Integer> keyValue : wordBase.entrySet()){
+        for (Map.Entry<String, Integer> keyValue : wordBase.entrySet()) {
             wordCounter += keyValue.getValue();
         }
         return wordCounter;
     }
 
     /**
-     * Метод находит самое длинное слово в wordBase
-     * @return самое длинное слово
+     * Метод находит самое длинное слово (или слова) в wordBase
+     *
+     * @return самое длинное слово (или слова)
      */
-//    public String getLongestWord() throws LongestWordException {
-//        String longestWord = "";
-//        List<String> longestWords = new ArrayList<>();
-//        for (Map.Entry<String, Integer> keyValue : wordBase.entrySet()){
-//            String key = keyValue.getKey();
-//            if (key.length() > longestWord.length()){
-//                longestWord = key;
-//                longestWords.clear();
-//                longestWords.add(longestWord);
-//            } else if (key.length() == longestWord.length() & !key.equals(longestWord)){
-//                longestWords.add(key);
-//            }
-//
-//        }
-//        if (longestWords.size() > 1){
-//            throw new LongestWordException("File have more than one longest word!", longestWords);
-//        } else {
-//            return longestWord;
-//        }
-//    }
-
-    public List<String> getLongestWord() throws LongestWordException {
+    public List<String> getLongestWord() {
         String longestWord = "";
         List<String> longestWords = new ArrayList<>();
-        for (Map.Entry<String, Integer> keyValue : wordBase.entrySet()){
+        for (Map.Entry<String, Integer> keyValue : wordBase.entrySet()) {
             String key = keyValue.getKey();
-            if (key.length() > longestWord.length()){
+            if (key.length() > longestWord.length()) {
                 longestWord = key;
                 longestWords.clear();
                 longestWords.add(longestWord);
-            } else if (key.length() == longestWord.length() & !key.equals(longestWord)){
+            } else if (key.length() == longestWord.length() & !key.equals(longestWord)) {
                 longestWords.add(key);
             }
         }
@@ -121,9 +101,10 @@ public class FileModel {
 
     /**
      * Метод сортирует в порядке убывания по значению value элементы wordBase
+     *
      * @return отсортированный wordBase формата List<Map.Entry<String, Integer>>
      */
-    public List<Map.Entry<String, Integer>> getFrequencyWord(){
+    public List<Map.Entry<String, Integer>> getFrequencyWord() {
         List<Map.Entry<String, Integer>> keyValueList = new ArrayList<>(wordBase.entrySet());
         keyValueList.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
         return keyValueList;
