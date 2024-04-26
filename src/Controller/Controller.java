@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Exceptions.LongestWordException;
 import Model.FileModel;
 import View.ResultView;
 
@@ -21,7 +22,7 @@ public class Controller {
     /**
      * Метод соединения view и model в модели MVC. в нашем случае ShowResult
      */
-    public void update() {
+    public void update() throws LongestWordException {
 
         /**
          * У экземпляра класса ResultTranslator вызываем методы с приставкой show для отображения входящих данных,

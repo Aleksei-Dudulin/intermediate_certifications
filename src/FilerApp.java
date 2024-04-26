@@ -1,4 +1,7 @@
 import Controller.Controller;
+import Model.Exceptions.EmptyFileException;
+import Model.Exceptions.LongestWordException;
+import Model.Exceptions.NoFileException;
 import Model.FileModel;
 import View.ResultView;
 
@@ -17,8 +20,11 @@ public class FilerApp {
 
             controller.update();
         }
-        catch (IOException | DataFormatException e){
-            e.printStackTrace();
+        catch (NoFileException | EmptyFileException | IOException e){
+            System.out.println(e.getMessage());
+        }
+        catch (LongestWordException e){
+            System.out.println(e.getMessage() + " " + e.getLongestWords());
         }
     }
 }
